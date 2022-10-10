@@ -6,8 +6,13 @@
 Welcome to MLHub's documentation!
 ==================================
 
+MLHub combines Machine Learning Models, their documentation, and trained checkpoints into a single python library.
+
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
 
-   test
+   developer
+
+.. image:: https://img.shields.io/badge/Developer-TheProjectsGuy-blue
+   :target: https://github.com/TheProjectsGuy
