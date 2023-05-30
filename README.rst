@@ -2,9 +2,7 @@
 MLHub - Machine Learning Hub
 ===============================
 
-.. image:: https://readthedocs.org/projects/mlhub-pytorch/badge/?version=latest
-    :target: https://mlhub-pytorch.readthedocs.io/en/latest/?badge=latest
-    :alt: Documentation Status
+My notes, experiments, models, etc. wrapped into a library. Mainly for personal use only.
 
 .. contents:: Table of contents
     :depth: 2
