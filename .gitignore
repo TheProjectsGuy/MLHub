@@ -1,2 +1,10 @@
 # Ignore VSCode
 .vscode/
+
+# Ignore TODO notes
+TODO-*.md
+notes/
+
+# Ignore docs (build)
+/docs/_build/
+/docs/build
