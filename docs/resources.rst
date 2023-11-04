@@ -3,6 +3,9 @@ External Resources for ML
 
 Links, blogs, courses, people, etc. in the fields of AI, ML, CV, NLP, etc. that I want to keep at one place (for my reference).
 
+.. contents:: Table of contents
+    :depth: 4
+
 Websites
 --------
 
@@ -40,10 +43,12 @@ Projects
 Interesting projects in the wild
 
 #. `HuggingFace Projects <https://huggingface.co/docs>`_: `Transformers <https://huggingface.co/docs/transformers/index>`_, `Diffusers <https://huggingface.co/docs/diffusers/index>`_, `Tokenizers <https://huggingface.co/docs/tokenizers/index>`_, `timm <https://huggingface.co/docs/timm/index>`_, and `Hub <https://huggingface.co/docs/hub/index>`_
-#. `Kornia <https://kornia.readthedocs.io/en/latest/>`: Computer vision algorithms (AI centric)
+#. `Kornia <https://kornia.readthedocs.io/en/latest/>`_: Computer vision algorithms (AI centric)
 #. `Lightning-AI/lit-gpt <https://github.com/Lightning-AI/lit-gpt>`_: Implementation of SOTA open-source LLMs with quantization and LoRA like enhancements
+#. `PyG - PyTorch Geometric <https://pyg.org/>`_: Geometric deep learning on PyTorch
 #. `spaCy <https://spacy.io/>`_: NLP tool
-#. `Radiant Earth <https://radiant.earth/>`_: Earth observation data
+#. `Radiant Earth <https://radiant.earth/>`_: Earth observation data (geo-spatial informatics)
+#. `ICESat-2 <https://icesat-2.gsfc.nasa.gov/>`_: Ice, Cloud and land Elevation Satellite-2 (geo-spatial informatics)
 #. `MLHub CLI <https://mlhub.readthedocs.io/en/latest/>`_: Command line framework for various ML models (not related to this project)
 
 Books
