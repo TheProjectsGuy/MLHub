@@ -10,6 +10,8 @@ Welcome to MLHub's documentation!
 .. toctree::
     :maxdepth: 2
     :caption: Contents
+    
+    resources
 
 .. toctree::
     :maxdepth: 1
@@ -20,7 +22,7 @@ Welcome to MLHub's documentation!
     genindex
 
 Indices and tables
-==================
+------------------
 
 * :ref:`genindex`
 * :ref:`modindex`
