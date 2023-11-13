@@ -44,8 +44,9 @@ Interesting projects in the wild
 
 #. `HuggingFace Projects <https://huggingface.co/docs>`_: `Transformers <https://huggingface.co/docs/transformers/index>`_, `Diffusers <https://huggingface.co/docs/diffusers/index>`_, `Tokenizers <https://huggingface.co/docs/tokenizers/index>`_, `timm <https://huggingface.co/docs/timm/index>`_, and `Hub <https://huggingface.co/docs/hub/index>`_
 #. `Kornia <https://kornia.readthedocs.io/en/latest/>`_: Computer vision algorithms (AI centric)
-#. `Lightning-AI/lit-gpt <https://github.com/Lightning-AI/lit-gpt>`_: Implementation of SOTA open-source LLMs with quantization and LoRA like enhancements
 #. `PyG - PyTorch Geometric <https://pyg.org/>`_: Geometric deep learning on PyTorch
+#. `Numba <https://numba.pydata.org/>`_: JIT compilation for making python code faster (even has CUDA acceleration and parallel for loops)
+#. `Lightning-AI/lit-gpt <https://github.com/Lightning-AI/lit-gpt>`_: Implementation of SOTA open-source LLMs with quantization and LoRA like enhancements
 #. `spaCy <https://spacy.io/>`_: NLP tool
 #. `Radiant Earth <https://radiant.earth/>`_: Earth observation data (geo-spatial informatics)
 #. `ICESat-2 <https://icesat-2.gsfc.nasa.gov/>`_: Ice, Cloud and land Elevation Satellite-2 (geo-spatial informatics)

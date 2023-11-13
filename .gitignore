@@ -1,5 +1,6 @@
 # Ignore VSCode
 .vscode/
+.cspell/
 
 # Ignore TODO notes
 TODO-*.md
