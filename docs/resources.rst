@@ -42,7 +42,14 @@ Projects
 
 Interesting projects in the wild
 
-#. `HuggingFace Projects <https://huggingface.co/docs>`_: `Transformers <https://huggingface.co/docs/transformers/index>`_, `Diffusers <https://huggingface.co/docs/diffusers/index>`_, `Tokenizers <https://huggingface.co/docs/tokenizers/index>`_, `timm <https://huggingface.co/docs/timm/index>`_, and `Hub <https://huggingface.co/docs/hub/index>`_
+#. `HuggingFace Projects Documentation <https://huggingface.co/docs>`_: A collection of awesome community projects
+
+    * `Transformers <https://huggingface.co/docs/transformers/index>`_: Different transformer implementations
+    * `timm <https://huggingface.co/docs/timm/index>`_: SOTA computer vision implementations
+    * `Hub <https://huggingface.co/docs/hub/index>`_: Models, datasets, etc. at one place
+    * `Tokenizers <https://huggingface.co/docs/tokenizers/index>`_: Tokenizers for production and research
+    * `Diffusers <https://huggingface.co/docs/diffusers/index>`_: Diffusion algorithms
+
 #. `Kornia <https://kornia.readthedocs.io/en/latest/>`_: Computer vision algorithms (AI centric)
 #. `PyG - PyTorch Geometric <https://pyg.org/>`_: Geometric deep learning on PyTorch
 #. `Numba <https://numba.pydata.org/>`_: JIT compilation for making python code faster (even has CUDA acceleration and parallel for loops)
@@ -190,21 +197,35 @@ YouTube Playlists
 #. `Jeremy Howard - Practical Deep Learning for Coders 2022 <https://www.youtube.com/playlist?list=PLfYUBJiXbdtSvpQjSnJJ_PmDQB_VyT5iU>`_
 #. `MLOps - Machine Learning Engineering for Production <https://www.youtube.com/playlist?list=PLkDaE6sCZn6GMoA0wbpJLi3t34Gd8l0aK>`_
 
+Communities
+-----------
+
+Some communities you can follow
+
+#. `ML Collective <https://mlcollective.org/>`_: ML research opportunities, collaboration, and mentorship
+
 People
 ------
 
 #. `Geoffrey E. Hinton <https://www.cs.toronto.edu/~hinton/>`_, `Yann LeCun <http://yann.lecun.org/ex/>`_, and `Yoshua Bengio <https://yoshuabengio.org/>`_: Founders of modern deep learning (received the turing award for it in 2018)
 #. `Jurgen Schmidhuber <https://people.idsia.ch/~juergen/>`_ (IDSAI, Swiss): LSTM
+#. `Jitendra Malik <https://people.eecs.berkeley.edu/~malik/>`_ (UC Berkeley, Meta): Computer vision and AI
+#. `Abhinav Gupta <https://www.cs.cmu.edu/~abhinavg/>`_ (CMU RI): Computer Vision and AI
+#. `Sergey Levine <https://people.eecs.berkeley.edu/~svlevine/>`_ (UC Berkeley): Reinforcement Learning for Robotics
+#. `Dhruv Batra <https://faculty.cc.gatech.edu/~dbatra/>`_ (Georgia Tech, Meta): Embodied AI Agents, Robotics
 #. `Michael Bronstein <https://www.cs.ox.ac.uk/people/michael.bronstein/>`_ (CS Univ. of Oxford): Geometric deep learning and graph neural networks.
 #. `Max Welling <https://staff.fnwi.uva.nl/m.welling/>`_ (Qualcomm UvA): VAEs, graph CNNs
+#. `Luca Carlone <https://lucacarlone.mit.edu/>`_ (MIT): SPARK Lab; SLAM and robust perception.
+#. `Saurabh Gupta <https://saurabhg.web.illinois.edu/>`_ (UIUC, Meta): Computer vision, robotics, and AI
 
 Follow these folks on social media (for new research)
 
-#. `Luca Carlone <https://lucacarlone.mit.edu/>`_: MIT SPARK Lab; SLAM and robust perception.
-#. `Dr Ronald Clark <https://www.ron-clark.com/>`_ (CS, Oxford): Real time SLAM, bundle adjustment, scene understanding, and motion tracking
-#. `Devendra Singh Chaplot <https://devendrachaplot.github.io/>`_ (CMU, FAIR): Visual navigation, object goal navigation, exploration, embodied AI
 #. `Dmytro Mishkin <https://dmytro.ai/>`_: Kornia (CV+AI framework), tweets papers
 #. `Phil Wang a.k.a. Lucidrains <https://lucidrains.github.io/>`_: Open source contributions on `GitHub <https://github.com/lucidrains>`_
 #. `Ahsen Khaliq a.k.a. AK a.k.a. akhaliq <https://twitter.com/_akhaliq>`_: Tweets and HuggingFace papers, Gradio
 #. `Aran Komatsuzaki <https://arankomatsuzaki.wordpress.com/about-me/>`_: Tweets papers, LAION and EleutherAI
 #. `Mike Young <https://twitter.com/mikeyoung44>`_: Paper summaries
+#. `Ryohei Sasaki <https://github.com/rsasaki0109>`_: Research on autonomous driving (LiDAR)
+#. `Dr Ronald Clark <https://www.ron-clark.com/>`_ (CS, Oxford): Real time SLAM, bundle adjustment, scene understanding, and motion tracking
+#. `Devendra Singh Chaplot <https://devendrachaplot.github.io/>`_ (CMU, FAIR): Visual navigation, object goal navigation, exploration, embodied AI
+#. `Dhruv Shah <https://twitter.com/shahdhruv_>`_ (UC Berkeley): Robotics & AI
