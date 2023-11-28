@@ -62,6 +62,7 @@ Interesting projects in the wild
 #. `Kornia <https://kornia.readthedocs.io/en/latest/>`_: Computer vision algorithms (AI centric)
 #. `PyG - PyTorch Geometric <https://pyg.org/>`_: Geometric deep learning on PyTorch
 #. `Numba <https://numba.pydata.org/>`_: JIT compilation for making python code faster (even has CUDA acceleration and parallel for loops)
+#. `CuPy <https://cupy.dev/>`_ and `PyCUDA <https://documen.tician.de/pycuda/>`_: NVIDIA CUDA in Python
 #. `HMMLearn <https://hmmlearn.readthedocs.io/en/latest/index.html>`_: Unsupervised learning and inference of Hidden Markov Models
 #. `XGBoost <https://xgboost.readthedocs.io/en/stable/>`_: Optimized gradient boosting library that is efficient, flexible, and portable
 #. `LightGBM <https://lightgbm.readthedocs.io/en/latest/index.html>`_: Gradient boosting framework that uses tree-based learning algorithms
