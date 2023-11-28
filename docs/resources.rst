@@ -13,9 +13,18 @@ Daily papers
 ^^^^^^^^^^^^
 
 #. `HuggingFace Papers <https://huggingface.co/papers>`_
-#. `PapersWithCode <https://paperswithcode.com/>`_
+#. `PapersWithCode <https://paperswithcode.com/>`_ (also see `other portals <https://portal.paperswithcode.com/>`_)
 #. `arxiv-sanity <https://arxiv-sanity-lite.com/>`_
 #. `AIModels.fyi <https://notes.aimodels.fyi/>`_ blog notes (paper summaries)
+
+AI Summaries
+
+.. warning:: 
+    AI generated summaries might not always be factual (or have high utility).
+
+#. `Bing Chat on Microsoft Edge <https://www.reddit.com/r/bing/s/SOvYIzjMwd>`_: Open PDF in Edge, click Bing Chat, ask it questions about the PDF
+#. `arxiv-summary <https://www.arxiv-summary.com/>`_
+#. `scisummary <https://scisummary.com/>`_
 
 Blogs
 ^^^^^
@@ -53,6 +62,9 @@ Interesting projects in the wild
 #. `Kornia <https://kornia.readthedocs.io/en/latest/>`_: Computer vision algorithms (AI centric)
 #. `PyG - PyTorch Geometric <https://pyg.org/>`_: Geometric deep learning on PyTorch
 #. `Numba <https://numba.pydata.org/>`_: JIT compilation for making python code faster (even has CUDA acceleration and parallel for loops)
+#. `HMMLearn <https://hmmlearn.readthedocs.io/en/latest/index.html>`_: Unsupervised learning and inference of Hidden Markov Models
+#. `XGBoost <https://xgboost.readthedocs.io/en/stable/>`_: Optimized gradient boosting library that is efficient, flexible, and portable
+#. `LightGBM <https://lightgbm.readthedocs.io/en/latest/index.html>`_: Gradient boosting framework that uses tree-based learning algorithms
 #. `Lightning-AI/lit-gpt <https://github.com/Lightning-AI/lit-gpt>`_: Implementation of SOTA open-source LLMs with quantization and LoRA like enhancements
 #. `spaCy <https://spacy.io/>`_: NLP tool
 #. `Radiant Earth <https://radiant.earth/>`_: Earth observation data (geo-spatial informatics)
@@ -210,6 +222,7 @@ People
 #. `Geoffrey E. Hinton <https://www.cs.toronto.edu/~hinton/>`_, `Yann LeCun <http://yann.lecun.org/ex/>`_, and `Yoshua Bengio <https://yoshuabengio.org/>`_: Founders of modern deep learning (received the turing award for it in 2018)
 #. `Jurgen Schmidhuber <https://people.idsia.ch/~juergen/>`_ (IDSAI, Swiss): LSTM
 #. `Jitendra Malik <https://people.eecs.berkeley.edu/~malik/>`_ (UC Berkeley, Meta): Computer vision and AI
+#. `Leonidas J Guibas <https://profiles.stanford.edu/leonidas-guibas>`_ (Stanford): 3D computer vision backbones (PointNet).
 #. `Abhinav Gupta <https://www.cs.cmu.edu/~abhinavg/>`_ (CMU RI): Computer Vision and AI
 #. `Sergey Levine <https://people.eecs.berkeley.edu/~svlevine/>`_ (UC Berkeley): Reinforcement Learning for Robotics
 #. `Dhruv Batra <https://faculty.cc.gatech.edu/~dbatra/>`_ (Georgia Tech, Meta): Embodied AI Agents, Robotics
