@@ -16,6 +16,11 @@ Daily papers
 #. `PapersWithCode <https://paperswithcode.com/>`_ (also see `other portals <https://portal.paperswithcode.com/>`_)
 #. `arxiv-sanity <https://arxiv-sanity-lite.com/>`_
 #. `AIModels.fyi <https://notes.aimodels.fyi/>`_ blog notes (paper summaries)
+#. Paper search
+
+    * `Litmaps <https://www.litmaps.com/>`_
+    * `Semantic Scholar <https://www.semanticscholar.org/>`_
+    * `Google Scholar <https://scholar.google.com/>`_
 
 AI Summaries
 
