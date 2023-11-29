@@ -71,11 +71,22 @@ Interesting projects in the wild
 #. `HMMLearn <https://hmmlearn.readthedocs.io/en/latest/index.html>`_: Unsupervised learning and inference of Hidden Markov Models
 #. `XGBoost <https://xgboost.readthedocs.io/en/stable/>`_: Optimized gradient boosting library that is efficient, flexible, and portable
 #. `LightGBM <https://lightgbm.readthedocs.io/en/latest/index.html>`_: Gradient boosting framework that uses tree-based learning algorithms
-#. `Lightning-AI/lit-gpt <https://github.com/Lightning-AI/lit-gpt>`_: Implementation of SOTA open-source LLMs with quantization and LoRA like enhancements
+#. Projects on large language models
+
+    * `Lightning-AI/lit-gpt <https://github.com/Lightning-AI/lit-gpt>`_: Implementation of SOTA open-source LLMs with quantization and LoRA like enhancements
+    * `LLaMA Index <https://www.llamaindex.ai/>`_: LLMs on your own data
+    * `tiktoken <https://github.com/openai/tiktoken>`_: OpenAI's BPE tokenizer
+
 #. `spaCy <https://spacy.io/>`_: NLP tool
 #. `Radiant Earth <https://radiant.earth/>`_: Earth observation data (geo-spatial informatics)
+#. `Acme <https://dm-acme.readthedocs.io/en/latest/>`_: RL components and agents by Google DeepMind
 #. `ICESat-2 <https://icesat-2.gsfc.nasa.gov/>`_: Ice, Cloud and land Elevation Satellite-2 (geo-spatial informatics)
 #. `MLHub CLI <https://mlhub.readthedocs.io/en/latest/>`_: Command line framework for various ML models (not related to this project)
+
+Startups
+--------
+
+#. `ArtPark Ignite <https://www.artpark.in/startup/ignite/>`_: Venture-building program for AI and Robotics from ARTPARK@IISc
 
 Books
 -----
