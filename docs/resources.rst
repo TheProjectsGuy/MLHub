@@ -82,6 +82,7 @@ Interesting projects in the wild
 #. `Acme <https://dm-acme.readthedocs.io/en/latest/>`_: RL components and agents by Google DeepMind
 #. `ICESat-2 <https://icesat-2.gsfc.nasa.gov/>`_: Ice, Cloud and land Elevation Satellite-2 (geo-spatial informatics)
 #. `MLHub CLI <https://mlhub.readthedocs.io/en/latest/>`_: Command line framework for various ML models (not related to this project)
+#. `AutoML <https://www.automl.org/>`_: Neural architecture search (NAS) and hyperparameter selection/optimization
 
 Startups
 --------
