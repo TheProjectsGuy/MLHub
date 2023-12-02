@@ -75,6 +75,7 @@ Interesting projects in the wild
 
     * `Lightning-AI/lit-gpt <https://github.com/Lightning-AI/lit-gpt>`_: Implementation of SOTA open-source LLMs with quantization and LoRA like enhancements
     * `LLaMA Index <https://www.llamaindex.ai/>`_: LLMs on your own data
+    * `LangChain <https://python.langchain.com/>`_: Build applications powered by language models
     * `tiktoken <https://github.com/openai/tiktoken>`_: OpenAI's BPE tokenizer
 
 #. `spaCy <https://spacy.io/>`_: NLP tool
