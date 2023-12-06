@@ -71,6 +71,7 @@ Interesting projects in the wild
 #. `HMMLearn <https://hmmlearn.readthedocs.io/en/latest/index.html>`_: Unsupervised learning and inference of Hidden Markov Models
 #. `XGBoost <https://xgboost.readthedocs.io/en/stable/>`_: Optimized gradient boosting library that is efficient, flexible, and portable
 #. `LightGBM <https://lightgbm.readthedocs.io/en/latest/index.html>`_: Gradient boosting framework that uses tree-based learning algorithms
+#. `Ray <https://www.ray.io/>`_: Scaling AI workloads (data, training, hyperparameter tuning, RL, serving, etc.). From `AnyScale Platform <https://www.anyscale.com/platform>`_ team.
 #. Projects on large language models
 
     * `Lightning-AI/lit-gpt <https://github.com/Lightning-AI/lit-gpt>`_: Implementation of SOTA open-source LLMs with quantization and LoRA like enhancements
