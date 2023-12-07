@@ -16,11 +16,16 @@ Daily papers
 #. `PapersWithCode <https://paperswithcode.com/>`_ (also see `other portals <https://portal.paperswithcode.com/>`_)
 #. `arxiv-sanity <https://arxiv-sanity-lite.com/>`_
 #. `AIModels.fyi <https://notes.aimodels.fyi/>`_ blog notes (paper summaries)
-#. Paper search
 
-    * `Litmaps <https://www.litmaps.com/>`_
-    * `Semantic Scholar <https://www.semanticscholar.org/>`_
-    * `Google Scholar <https://scholar.google.com/>`_
+Paper search
+
+#. `Litmaps <https://www.litmaps.com/>`_
+#. `Semantic Scholar <https://www.semanticscholar.org/>`_
+#. `Google Scholar <https://scholar.google.com/>`_
+
+Conferences
+
+#. `AI Deadlines <https://aideadlin.es/>`_: A `PapersWithCode Repository <https://github.com/paperswithcode/ai-deadlines>`_ that keeps track of upcoming conferences in AI related subject areas
 
 AI Summaries
 
