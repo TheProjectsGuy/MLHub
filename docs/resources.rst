@@ -14,6 +14,7 @@ Daily papers
 
 #. `HuggingFace Papers <https://huggingface.co/papers>`_
 #. `PapersWithCode <https://paperswithcode.com/>`_ (also see `other portals <https://portal.paperswithcode.com/>`_)
+#. `Scholar Inbox <https://www.scholar-inbox.com/>`_: More personalized list  of papers daily
 #. `arxiv-sanity <https://arxiv-sanity-lite.com/>`_
 #. `AIModels.fyi <https://notes.aimodels.fyi/>`_ blog notes (paper summaries)
 
