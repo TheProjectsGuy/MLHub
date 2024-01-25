@@ -9,6 +9,12 @@ Links, blogs, courses, people, etc. in the fields of AI, ML, CV, NLP, etc. that 
 Websites
 --------
 
+Learning ML
+^^^^^^^^^^^
+
+#. `Learn ML from TensorFlow <https://www.tensorflow.org/resources/learn-ml>`__
+#. `ML Crash Course from Google <https://developers.google.com/machine-learning/crash-course/>`__
+
 Daily papers
 ^^^^^^^^^^^^
 
@@ -72,7 +78,9 @@ Interesting projects in the wild
 
 #. `Kornia <https://kornia.readthedocs.io/en/latest/>`__: Computer vision algorithms (AI centric)
 #. `PyG - PyTorch Geometric <https://pyg.org/>`__: Geometric deep learning on PyTorch
+#. `PyTorch Points 3D <https://torch-points3d.readthedocs.io/en/latest/>`_: Implementation of various 3D algorithms in one repository
 #. `Numba <https://numba.pydata.org/>`__: JIT compilation for making python code faster (even has CUDA acceleration and parallel for loops)
+#. `RAPIDS Ecosystem <https://rapids.ai/ecosystem/>`__: Many libraries for accelerated pandas dataframe, Scikit-learn like API, analytics, clustering, solvers, etc.
 #. `CuPy <https://cupy.dev/>`__ and `PyCUDA <https://documen.tician.de/pycuda/>`__: NVIDIA CUDA in Python
 #. `HMMLearn <https://hmmlearn.readthedocs.io/en/latest/index.html>`__: Unsupervised learning and inference of Hidden Markov Models
 #. `XGBoost <https://xgboost.readthedocs.io/en/stable/>`__: Optimized gradient boosting library that is efficient, flexible, and portable
@@ -86,11 +94,11 @@ Interesting projects in the wild
     * `tiktoken <https://github.com/openai/tiktoken>`__: OpenAI's BPE tokenizer
 
 #. `spaCy <https://spacy.io/>`__: NLP tool
-#. `Radiant Earth <https://radiant.earth/>`__: Earth observation data (geo-spatial informatics)
 #. `Acme <https://dm-acme.readthedocs.io/en/latest/>`__: RL components and agents by Google DeepMind
-#. `ICESat-2 <https://icesat-2.gsfc.nasa.gov/>`__: Ice, Cloud and land Elevation Satellite-2 (geo-spatial informatics)
 #. `MLHub CLI <https://mlhub.readthedocs.io/en/latest/>`__: Command line framework for various ML models (not related to this project)
 #. `AutoML <https://www.automl.org/>`__: Neural architecture search (NAS) and hyperparameter selection/optimization
+#. `Radiant Earth <https://radiant.earth/>`__: Earth observation data (geo-spatial informatics)
+#. `ICESat-2 <https://icesat-2.gsfc.nasa.gov/>`__: Ice, Cloud and land Elevation Satellite-2 (geo-spatial informatics)
 
 Startups
 --------

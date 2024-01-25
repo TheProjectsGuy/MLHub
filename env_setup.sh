@@ -222,16 +222,27 @@ if [[ "${gpu^^}" == *' NVIDIA '* ]]; then
     echo_debug "Found NVIDIA GPU"
     conda_raw_install pytorch torchvision torchaudio pytorch-cuda=11.8 \
         -c pytorch -c nvidia
+    conda_install -c conda-forge pynvml
 else
     echo_debug "Couldn't find NVIDIA GPU, installing PyTorch CPU"
     conda_raw_install pytorch torchvision torchaudio cpuonly -c pytorch
 fi
+pip_install torcheval
 conda_install -c conda-forge einops
+conda_install -c conda-forge torchinfo
+pip_install idx2numpy
+conda_raw_install -c conda-forge matplotlib
+conda_install -c conda-forge tqdm
+conda_install -c conda-forge tyro
+conda_install -c conda-forge tensorboard
+pip_install torchviz
 if [ $dev_tools == "true" ]; then 
     echo_info "------ Installing documentation and packaging tools ------"
     # Sphinx docs
     conda_install -c conda-forge sphinx sphinx-rtd-theme sphinx-copybutton
     pip_install sphinx-reload
+    # Jupyter
+    conda_raw_install -c conda-forge jupyter
 elif [ $dev_tools == "false" ]; then
     echo_info "Skipping documentation and packaging tools"
 fi

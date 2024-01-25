@@ -1,5 +1,8 @@
 # MLHub - Machine Learning Hub
 
+[![GitHub: TheProjectsGuy/MLHub](https://img.shields.io/badge/_-TheProjectsGuy%2FMLHub-grey?logo=GitHub&logoColor=white&labelColor=black
+)](https://github.com/TheProjectsGuy/MLHub)
+
 My notes, experiments, models, etc. wrapped into a library. Mainly for personal use only.
 
 ## Table of contents
