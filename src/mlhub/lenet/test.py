@@ -14,12 +14,12 @@ import matplotlib.pyplot as plt
 from dataclasses import dataclass
 from torch.utils.data import DataLoader
 # MLHub internals
-from mlhub.utils import set_download_dir, get_download_dir, ex, \
-        norm_img
 from .models import LeNet5
 from .data import MNISTDataset
 from .utils import test, model_output_to_labels, \
         model_output_to_multi_labels
+from mlhub.utils import set_download_dir, get_download_dir, ex, \
+        norm_img
 
 
 # %%
@@ -109,29 +109,5 @@ if __name__ == "__main__" and "ipykernel" not in sys.argv[0]:
     except:
         traceback.print_exc()
     exit(0)
-
-# %%
-# main(LocalArgs(ckpt_dir="/scratch/mlhub/checkpoints/lenet5", 
-#                 download_dir="/scratch/mlhub"))
-
-# # %%
-# model = LeNet5()
-
-# # %%
-# ckpt_dir = "/scratch/mlhub/checkpoints/lenet5"
-# set_download_dir("/scratch/mlhub")
-
-# # %%
-# ckpt_file = f"{ex(ckpt_dir)}/checkpoint_epoch_13.pt"
-
-# # %%
-# model.load_state_dict(torch.load(ckpt_file)["model_state_dict"])
-
-# # %%
-# list(model.parameters())[0].device
-
-# # %%
-# er, model_preds, test_preds = test(
-#     DataLoader(MNISTDataset(train=False)), model)
 
 # %%

@@ -16,8 +16,9 @@ from typing import Optional, Union
 from collections.abc import Callable
 from torch.utils.data import Dataset
 from torchvision.transforms import v2 as tvf
-from mlhub.utils import download_and_extract_archive, \
-    get_download_dir, ex
+# MLHub internals
+from mlhub.utils import download_and_extract_archive, ex, \
+    get_download_dir
 
 
 # %%

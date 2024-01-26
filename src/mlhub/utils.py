@@ -1,5 +1,6 @@
 # Utilities
 """
+    The ``utils`` module contains common utilities for MLHub.
 """
 
 # %%
@@ -8,6 +9,7 @@ import sys
 import torch
 import string
 import random
+import hashlib
 import numpy as np
 from pathlib import Path
 from typing import Optional, Union
@@ -16,9 +18,13 @@ from torchvision.datasets.utils import download_and_extract_archive \
 
 
 # %%
-def ex(x: str):
-    """
-        Expand a path in 'x'
+def ex(x: str) -> str:
+    r"""
+        Expand a path fully
+        
+        :param x:   A path
+        
+        :return:    A fully resolved (absolute) path
     """
     return os.path.realpath(os.path.expanduser(x))
 
@@ -26,17 +32,33 @@ def ex(x: str):
 # %%
 # Download directory
 _download_dir = os.getenv("MLHUB_DOWNLOAD_DIR", "/tmp")
+
 # Get download directory
-def get_download_dir():
-    """
-        Get the download directory.
+def get_download_dir() -> str:
+    r"""
+        Get the download directory (as absolute/resolved path). Only
+        use :py:func:`mlhub.utils.set_download_dir` to set the
+        download directory.
+        
+        :return:    The fully resolved download directory
     """
     return ex(_download_dir)
+
 # Set download directory
-def set_download_dir(path: str):
-    """
+def set_download_dir(path: str) -> str:
+    r"""
         Set the download directory. If directory doesn't exist, it is
-        created.
+        created. Use :py:func:`mlhub.utils.get_download_dir` to get
+        the current download directory.
+        
+        .. note::
+            By default, the download directory is set by the 
+            environment variable ``MLHUB_DOWNLOAD_DIR``. If it's not 
+            set, then the default is ``/tmp``.
+        
+        :param path:   The download directory
+        
+        :return:       The download directory
     """
     global _download_dir
     if not os.path.isdir(path):
@@ -51,24 +73,29 @@ def download_and_extract_archive(url: str,
         extract_root: Optional[str] = None, 
         filename: Optional[str] = None, md5: Optional[str] = None,
         remove_finished: bool = False) -> None:
-    """
+    r"""
         A wrapper to PyTorch's download and extract function with
         documentation. If the file is already downloaded, then the
         download is not done again (after an MD5 integrity check).
         
-        url: Download URL (to obtain the file from)
-        download_root: Root folder where downloaded items must be
-            stored. If None, then it is inferred from the DOWNLOAD_DIR
-            variable. See 'get_download_dir'.
-        extract_root: Root folder where the downloaded items are 
-            extracted. If None, then it is the same as the 
-            'download_root'.
-        filename: The filename to use for saving. It is the basename
-            of the URL if None.
-        md5: The checksum to check the downloaded file against (before
-            extracting anything). No check is done if None.
-        remove_finished: If True, remove the downloaded file after
-            extracting it.
+        :param url:     The download URL (to obtain the file from)
+        :param download_root:
+                Root folder where downloaded items must be stored. 
+                If None, then it is inferred from the function 
+                :py:func:`mlhub.utils.get_download_dir`.
+        :param extract_root:
+                Root folder where the downloaded items are extracted. 
+                If None, then it is the same as the ``download_root``
+        :param filename:    
+                The filename to use for saving. It is the basename of 
+                the URL if None.
+        :param md5: 
+                The checksum to check the downloaded file against 
+                (before extracting anything). No check is done if 
+                ``None``.
+        :param remove_finished: 
+                If True, remove the downloaded file after extracting 
+                it.
     """
     if download_root is None:
         download_root = get_download_dir()
@@ -77,10 +104,43 @@ def download_and_extract_archive(url: str,
 
 
 # %%
-T_IMG = Union[torch.Tensor, np.ndarray]
-def norm_img(img: T_IMG, eps=1e-12) -> T_IMG:
+def check_md5(file: str, true_md5: Optional[str] = None) \
+        -> Union[str, bool]:
     """
-        Normalize an image to range [0, 1]
+        Returns the MD5 checksum of the given file
+        
+        :param file:     The file to check (should exist)
+        :param true_md5: 
+            The true MD5 checksum of the file. If None, then the 
+            checksum is not checked and the function returns the MD5
+            checksum of the file. If an expected (true) hash is passed
+            then the function returns ``True`` if the MD5 matches (
+            ``False`` otherwise)
+        
+        :return:
+            The MD5 checksum of the file if ``true_md5`` is None. Else
+            a bool comparing ``true_md5`` with the MD5 of ``file``.
+    """
+    if not os.path.isfile(file):
+        raise FileNotFoundError(file)
+    # Get hash of file
+    with open(ex(file), "rb") as f:
+        md5_hash = hashlib.md5(f.read()).hexdigest()
+    if true_md5 is not None:
+        return md5_hash == true_md5
+    return md5_hash
+
+
+# %%
+T_IMG = Union[torch.Tensor, np.ndarray]
+def norm_img(img: T_IMG, eps: float = 1e-12) -> T_IMG:
+    r"""
+        Normalize an image (uniformly map min to max) to range [0, 1].
+        
+        :param img:     The image to normalize
+        :param eps:     A small value to avoid division by zero
+        
+        :return:        The normalized image
     """
     return (img - img.min()) / (img.max() - img.min() + eps)
 
@@ -88,7 +148,10 @@ def norm_img(img: T_IMG, eps=1e-12) -> T_IMG:
 # %%
 def random_alnum_str(n: int = 4) -> str:
     """
-        Generate a random alphanumeric string of length 'n'
+        Generate a random alphanumeric string of length ``n`` There
+        could be character repetitions.
+        
+        :param n:   The length of alphanumeric string
     """
     characters = string.ascii_letters + string.digits
     return "".join(random.choices(characters, k=n))

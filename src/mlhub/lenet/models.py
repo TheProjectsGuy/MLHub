@@ -1,3 +1,8 @@
+# Model functions
+"""
+    Contains the following
+"""
+
 # %%
 import sys
 import time
@@ -44,17 +49,23 @@ class SubSamplingLayer(nn.Module):
                 sub-sampling
         """
         super().__init__()
-        out_channels = in_channels
+        out_channels = in_channels  # Sub-sampling doesn't change this
+        self.in_channels = in_channels
+        self.out_channels = out_channels
         self.kernel_size = kernel_size
-        self.weights = nn.Parameter(
+        self.weights = nn.Parameter(    # Learnable parameter
                 torch.randn([1, in_channels, 1, 1]))
-        self.kernel = nn.Parameter(torch.ones(
-            [out_channels, in_channels, kernel_size, kernel_size]) \
-                    * 0.25 * self.weights)
         self.bias = nn.Parameter(torch.randn([out_channels]))
     
+    def _create_weight(self):
+        in_c, out_c = self.in_channels, self.out_channels
+        ks = self.kernel_size
+        kernel = torch.ones([out_c, in_c, ks, ks], 
+                device=self.weights.device) * 0.25 * self.weights
+        return kernel
+    
     def forward(self, x):
-        k = self.kernel.to(x.device)
+        k = self._create_weight()
         return F.conv2d(x, k, self.bias, stride=2)
 
 

@@ -8,5 +8,5 @@ from mlhub.__about__ import __version__
 from mlhub import utils
 
 # %%
-# Packages
+# Sub-packages
 from mlhub import lenet

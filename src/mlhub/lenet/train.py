@@ -17,11 +17,11 @@ from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
 from typing import Callable, Optional, Tuple
 # MLHub internals
-from mlhub.utils import get_download_dir, set_download_dir, ex, \
-        norm_img, random_alnum_str
 from .models import LeNet5
 from .data import MNISTDataset
 from .utils import error_rate, model_output_to_labels, test
+from mlhub.utils import get_download_dir, set_download_dir, ex, \
+        norm_img, random_alnum_str
 
 
 # %%
@@ -212,7 +212,7 @@ def main(args: LocalArgs):
                         args.train_learning_rate, 
                         TrainingLoss(args.train_fn_j), ckpt_dir)
     _, (ep, er) = trainer.train(args.train_epochs)
-    print(f"Best test error rate {er} on epoch {ep}")
+    print(f"Best test error rate {er:.5f} on epoch {ep}")
     src_ckpt_file = f"{ckpt_dir}/checkpoint_epoch_{ep}.pt"
     model = LeNet5()
     best_ckpt = torch.load(src_ckpt_file)
@@ -246,55 +246,3 @@ if __name__ == "__main__" and "ipykernel" not in sys.argv[0]:
         traceback.print_exc()
     exit(0)
 
-
-# %%
-# Experimental section
-
-
-# %%
-# main(LocalArgs(ckpt_dir="/scratch/mlhub/checkpoints/lenet5", 
-#                 download_dir="/scratch/mlhub"))
-
-# # %%
-# set_download_dir("/scratch/mlhub")
-# trainer = Trainer(32, 0.01, TrainingLoss(), 
-#                 "/scratch/mlhub/checkpoints/lenet5")
-
-# # %%
-# model, _ = trainer.train(2)
-
-# # %%
-# er, _, _, = test(trainer.test_dataloader, model, trainer.device)
-# print(f"Error rate: {er}")
-
-# # %%
-# model.cpu().eval()
-
-# # %%
-# er, _, _, = test(trainer.test_dataloader, model, "cpu")
-# print(f"Error rate: {er}")
-
-# # %%
-# torch.save(model.state_dict(), 
-#         "/scratch/mlhub/checkpoints/lenet5/checkpoint.pth")
-
-# # %%
-# m2 = LeNet5()
-
-# # %%
-# m2.load_state_dict(
-#     torch.load("/scratch/mlhub/checkpoints/lenet5/checkpoint.pth"))
-
-# # %%
-# er, _, _, = test(trainer.test_dataloader, m2, "cpu")
-# print(f"Error rate: {er}")
-
-# # %%
-# er, _, _, = test(trainer.test_dataloader, model, "cpu")
-# print(f"Error rate: {er}")
-
-# # %%
-# m1_prms = [p for p in model.parameters()]
-# m2_prms = [p for p in m2.parameters()]
-
-# %%

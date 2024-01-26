@@ -15,6 +15,7 @@ Welcome to MLHub's documentation!
     :maxdepth: 2
     :caption: Contents
     
+    models/index
     resources
 
 .. toctree:: 
@@ -29,6 +30,7 @@ Welcome to MLHub's documentation!
     :caption: Indices
     :hidden:
     
+    references
     modindex
     genindex
 
