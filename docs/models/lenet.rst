@@ -16,7 +16,10 @@ The model implemented here consists of the following (just like many AI models):
 - **Optimizer**: The paper proposes an LM optimizer. The `Stochastic Gradient Descent optimizer <https://pytorch.org/docs/stable/generated/torch.optim.SGD.html>`__ is used here (since it comes with PyTorch).
 - **Loss**: The same RBF (`Radial Basis Function <https://en.wikipedia.org/wiki/Radial_basis_function>`__) output loss with MAP (maximum a posteriori) penalty term.
 
-These are further described below. See the paper for more details.
+.. contents:: Table of contents
+
+These are further described below. See the paper for more details. The API code
+documentation can be found at :py:mod:`mlhub.lenet`.
 
 Model
 ------
@@ -42,8 +45,9 @@ The layers are defined below
   pooling but there is a weight multiplication and a bias offset (the weight 
   and the bias are learnable parameters). This is implemented as standard 
   convolution with weights as ones and stride as the kernel size. The result is 
-  multiplied with a trainable parameter, added with another. The input and 
-  output of this layer are of shape ``(6, 14, 14)``.
+  multiplied with a trainable parameter, added with another. The sub-sampling
+  is implemented as the :py:class:`SubSamplingLayer <mlhub.lenet.models.SubSamplingLayer>` class.
+  The input and output of this layer are of shape ``(6, 14, 14)``.
 - **C3** custom convolution layer: This is like the same convolution layer (like
   *C1*), but the weights of some input channels are masked off (set zero) so 
   that not every input channel is connected to every output channel (the kernel
@@ -57,6 +61,16 @@ The layers are defined below
 - *Output* layer is a radial basis function layer that outputs a ``10`` 
   dimensional vector (each element is for a digit - 0 through 9). The RBF is
   described in more detail below.
+
+A sigmoid-like activation function is used in between the layers. It's 
+formulated as
+
+.. math:: 
+  
+  f(x; A, S) = A \; \mathrm{tanh}(S\,x)
+
+This activation function is implemented as :py:class:`SigmoidSquashingActivation <mlhub.lenet.models.SigmoidSquashingActivation>`.
+The entire network is implemented in the :py:class:`LeNet5 <mlhub.lenet.models.LeNet5>` class.
 
 Custom Convolution Layer
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -78,7 +92,8 @@ next three output channels are with sets of four disjoint input channels, and
 the last one is connected to all input channels (like in a normal convolution).
 
 The reason for choosing this pattern, according to the paper, is to provide a 
-split and to prevent the network from learning symmetric (same) weights.
+split and to prevent the network from learning symmetric (same) weights. This 
+is implemented as the :py:class:`CustomConvLayer <mlhub.lenet.models.CustomConvLayer>` class.
 
 Radial Basis Function
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -107,7 +122,8 @@ The weights are flattened to match the ``84`` dimensional input shape.
   template/weight values. From Figure 3 of the 
   :ref:`LeCun1998 <lecun1998gradient>` paper.
 
-The output :math:`y_i` with the least value is the predicted digit.
+The output :math:`y_i` with the least value is the predicted digit. This is 
+implemented as the :py:class:`RBFUnits <mlhub.lenet.models.RBFUnits>` class.
 
 Data
 -----
@@ -124,6 +140,8 @@ website: `<http://yann.lecun.com/exdb/mnist/>`_.
   :alt: Figure 4 of paper
   
   Some handwritten examples from the MNIST dataset.
+
+The dataset for this is implemented in the :py:class:`MNISTDataset <mlhub.lenet5.MNISTDataset>` class.
 
 Loss
 -----
@@ -154,7 +172,8 @@ outputting all zeros). The higher the :math:`y_i` value, the lower is the
 :math:`e^{-y_i}` value (and the lower is the loss).
 
 The two terms ensure that the correct label is pushed down (lower value output) 
-and the incorrect label is pushed up (higher value output).
+and the incorrect label is pushed up (higher value output). This is implemented
+in the :py:class:`TrainingLoss <mlhub.lenet.train.TrainingLoss>` class.
 
 Training
 ---------
@@ -166,6 +185,13 @@ on MNIST test set).
 .. figure:: ./media/lenet-training-testerror.png
   :align: center
   :alt: Error rate on the test set
+  
+  The training curve showing test error decreasing with each epoch. It becomes 
+  nearly stagnant after a few epochs.
+
+Ideally, there is a separate validation set for selecting the best model. We use
+the test split here. 
+See the :py:mod:`mlhub.lenet.train` module for more information on the API.
 
 Results
 --------

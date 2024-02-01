@@ -1,6 +1,28 @@
 # Model functions
 """
-    Contains the following
+    Models
+    ^^^^^^^
+    
+    .. autoclass:: mlhub.lenet.models.LeNet5
+        :members:
+        :exclude-members: forward
+        :special-members:
+    .. autoclass:: mlhub.lenet.models.CustomConvLayer
+        :members:
+        :exclude-members: forward
+        :special-members:
+    .. autoclass:: mlhub.lenet.models.RBFUnits
+        :members:
+        :exclude-members: forward
+        :special-members:
+    .. autoclass:: mlhub.lenet.models.SubSamplingLayer
+        :members:
+        :exclude-members: forward
+        :special-members:
+    .. autoclass:: mlhub.lenet.models.SigmoidSquashingActivation
+        :members:
+        :exclude-members: forward
+        :special-members:
 """
 
 # %%
@@ -19,13 +41,19 @@ from typing import Optional, Union, List
 class SigmoidSquashingActivation(nn.Module):
     """
         Sigmoid squashing activation function from the LeNet paper. It
-        is a scaled hyperbolic tangent function.
-        Function does f(x) = A tanh(S*x)
+        is a scaled hyperbolic tangent function. It can be found in
+        the equation 6 of :ref:`the paper <lecun1998gradient>`.
+        Function does the following
+        
+        .. math:: 
+        
+            f(x) = A \; \mathrm{tanh}(S\,x)
+        
     """
     def __init__(self, A = 1.7159, S = 2/3) -> None:
         """
-            - A: scaling for output of tanh
-            - S: scaling for input
+            :param A:   The value of :math:`A` from equation
+            :param S:   The value of :math:`S` from equation
         """
         super().__init__()
         self.A = A
@@ -38,15 +66,23 @@ class SigmoidSquashingActivation(nn.Module):
 # %%
 class SubSamplingLayer(nn.Module):
     """
-        Sub-sampling layer for LeNet5.
+        Sub-sampling layer for LeNet-5. Labeled as Sx in section 2B of
+        :ref:`the paper <lecun1998gradient>`.
+        
+        .. note::
+            **TL;DR**: 
+            It adds four numbers in a single channel (it depends on 
+            the ``kernel_size``), multiplies a weight, adds a bias,
+            and returns the result. The weight and bias are trainable.
     """
     def __init__(self, in_channels: int, kernel_size: int = 2) \
             -> None:
         """
-            - in_channels: Number of channels in the input image. The
-                output has the same number of channels.
-            - kernel_size: The size of the kernel to use for 
-                sub-sampling
+            :param in_channels:
+                Number of channels in the input image. The output has 
+                the same number of channels.
+            :param kernel_size:
+                The size of the kernel to use for sub-sampling.
         """
         super().__init__()
         out_channels = in_channels  # Sub-sampling doesn't change this
@@ -73,26 +109,30 @@ class SubSamplingLayer(nn.Module):
 class CustomConvLayer(nn.Module):
     """
         Custom convolution layer for LeNet5. Details in Table 1 and
-        related text in the paper [1].
-        
-        1: LeCun, Yann, et al. "Gradient-based learning applied to document recognition." Proceedings of the IEEE 86.11 (1998): 2278-2324.
+        related text in :ref:`the paper <lecun1998gradient>`.
     """
     def __init__(self, in_channels: int = 6, out_channels: int = 16, 
                 kernel_size: int = 5, bias: bool = True,
                 connected_map: Union[np.ndarray, str] \
                     = "default") -> None:
         """
-            - in_channels: Number of channels in the input image.
-            - out_channels: Number of channels in the output image.
-            - kernel_size: The size of the kernel to use for 
-                convolution.
-            - bias: If True, use bias. Else bias is 0.
-            - connected_map: The connectivity map to use for 
-                convolution. If "default", the connectivity map is
-                taken from the table 1 of the paper [1]. If a numpy
-                array is given, it should be a boolean array of shape 
-                [out_channels, in_channels] where [i, j] is the ith
-                out connected to jth in channel (bool).
+            :param in_channels:
+                Number of channels in the input image.
+            :param out_channels:
+                Number of channels in the output image.
+            :param kernel_size:
+                The size of the kernel to use for convolution. Should
+                be an ``int`` (only square kernels supported).
+            :param bias:    If True, use bias. Else bias is 0.
+            :param connected_map:
+                The connectivity map to use for convolution. If 
+                ``"default"``, the connectivity map is taken from the 
+                table 1 of :ref:`the paper <lecun1998gradient>`. If
+                a numpy array is given, it should be of shape
+                ``[out_channels, in_channels]`` where ``[i, j]`` is
+                ``True`` if ``j``-th input channel is connected to the
+                ``i``-th output channel. The array datatype is 
+                ``bool``.
         """
         super().__init__()
         if connected_map == "default":
@@ -160,20 +200,25 @@ class CustomConvLayer(nn.Module):
 class RBFUnits(nn.Module):
     """
         Radial Basis Function units for the final classification head
-        of LeNet.
+        of LeNet. It is described in equation 7 and related text in 
+        :ref:`the paper <lecun1998gradient>`.
     """
     def __init__(self, in_features: int = 84, out_features: int = 10,
                 param_vect: Union[np.ndarray, str] = "default",
                 requires_grad: bool = False) \
                 -> None:
         """
-            - in_features: Number of input features.
-            - out_features: Number of output features.
-            - param_vect: Parameter vector for the RBF units. Should
-                be a numpy array. If "default", then the default
-                from Figure 3 is used.
-            - requires_grad: If True, the gradient is enabled, else
-                no gradient is enabled (no backprop over parameters)
+            :param in_features:     Number of input features.
+            :param out_features:    Number of output features.
+            :param param_vect:
+                Parameter vector for the RBF units. Should be a numpy
+                array. If ``default``, then the default digit 
+                templates from Figure 3 of :ref:`the paper <lecun1998gradient>`
+                is used.
+            :param requires_grad:
+                If True, the gradient for the template weights is
+                enabled, else no gradient is enabled (no backprop over
+                the template weights)
         """
         super().__init__()
         self.in_d = in_features
@@ -336,9 +381,7 @@ class RBFUnits(nn.Module):
 # %%
 class LeNet5(nn.Module):
     """
-        LeNet5 network presented in section 2 of the paper [1].
-        
-        1: LeCun, Yann, et al. "Gradient-based learning applied to document recognition." Proceedings of the IEEE 86.11 (1998): 2278-2324.
+        LeNet-5 network presented in section 2 of :ref:`the paper <lecun1998gradient>`.
     """
     def __init__(self) -> None:
         super().__init__()

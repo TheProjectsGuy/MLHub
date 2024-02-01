@@ -1,3 +1,25 @@
+# Training code for LeNet-5
+"""
+    The LeNet-5 was trained using
+    
+    .. code-block:: bash
+    
+        python -m mlhub.lenet.train \\
+            --ckpt-dir /scratch/mlhub/checkpoints/lenet5 \\
+            --download-dir /scratch/mlhub --train-epochs 50
+    
+    The above code invokes the :py:class:`Trainer <mlhub.lenet.train.Trainer>`
+    class.
+    
+    .. autoclass:: mlhub.lenet.train.Trainer
+        :members:
+        :private-members:
+        :special-members: __init__
+    
+    .. autoclass:: mlhub.lenet.train.TrainingLoss
+        :special-members: __init__
+"""
+
 # %%
 import os
 import sys
@@ -15,7 +37,7 @@ import torch.nn.functional as F
 from dataclasses import dataclass
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
-from typing import Callable, Optional, Tuple
+from typing import Callable, Optional, Tuple, Union
 # MLHub internals
 from .models import LeNet5
 from .data import MNISTDataset
@@ -43,7 +65,13 @@ class LocalArgs:
 
 # %%
 class TrainingLoss(nn.Module):
+    """
+        The training loss as defined in Equation 9 of :ref:`the paper <lecun1998gradient>`.
+    """
     def __init__(self, j: float = 0.01) -> None:
+        """
+            :param j:   The :math:`j` value.
+        """
         super().__init__()
         self.j = j
     
@@ -60,15 +88,39 @@ class TrainingLoss(nn.Module):
 
 
 # %%
+T1 = tuple[LeNet5, tuple[int, torch.Tensor]]
 class Trainer:
     """
-        Trainer for LeNet-5
+        Trainer for LeNet-5. Training happens on the GPU, if one is
+        found, else it happens on the CPU.
+        
+        It's a wrapper for the following
+        
+        -   :py:class:`MNISTDataset <mlhub.lenet.data.MNISTDataset>` 
+            wrapped in a `DataLoader <https://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader>`__
+        -   :py:class:`LeNet-5 <mlhub.lenet.models.LeNet5>` model that
+            loads on the GPU (if found) or CPU.
+        -   `SGD <https://pytorch.org/docs/stable/generated/torch.optim.SGD.html>`__ optimizer
+        -   A :py:class:`TrainingLoss` like object.
+        -   Checkpointing every epoch and tensorboard logging using
+            a `SummaryWriter <https://pytorch.org/docs/stable/tensorboard.html>`__. 
+            This feature is turned off if ``ckpt_dir`` is ``None``.
     """
     def __init__(self, batch_size: int = 32, 
                 learning_rate: float = 1e-2,
                 training_loss: Optional[Callable] = None,
                 ckpt_dir: str = None,
                 device: Optional[device] = None) -> None:
+        """
+            :param batch_size:  The batch size
+            :param learning_rate:   The learning rate
+            :param training_loss:
+                The loss function to use for training. If ``None``,
+                then :py:class:`TrainingLoss` is used.
+            :param ckpt_dir:
+                The directory where to store checkpoints. If ``None``
+                then no checkpoints are saved.
+        """
         # Datasets
         self._batch_size = batch_size
         self.train_dataset = MNISTDataset(train=True)
@@ -113,7 +165,21 @@ class Trainer:
             self.writer = SummaryWriter(ex(tb_logs_dir))
     
     # Train model for a single epoch
-    def _train_epoch(self, curr_epoch: int = 0):
+    def _train_epoch(self, curr_epoch: int = 0) -> float:
+        """
+            Train the model for a single epoch. It does forward pass
+            for a training batch, computes the loss, and then computes
+            and applies the gradients to the model. It also writes to
+            tensorboard (prints if tensorboard is not enabled).
+            
+            :param curr_epoch:
+                The current epoch (only for storing the checkpoint).
+            
+            :returns:   The loss value as item.
+            
+            .. warning::
+                This function is private to the class.
+        """
         self.model.train()
         for batch, tr_sample in enumerate(self.train_dataloader):
             # Resolve input image and labels (target)
@@ -152,7 +218,23 @@ class Trainer:
     
     # Test the model through the test set
     @torch.no_grad()
-    def test(self) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+    def test(self) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+        """
+            Tests the model and returns the statistics on the MNIST
+            test set.
+            
+            :returns:
+                A tuple of ``(test_error, model_preds, test_preds)``
+                where ``test_error`` is the error (percentage wrong),
+                ``model_preds`` is a vector of model predictions for
+                the test images, and ``test_preds`` is the ground 
+                truth for test set (image) labels.
+            
+            .. note::
+                This function is used for validation or selection of 
+                the best checkpoint when training. Avoid calling it
+                outside the class.
+        """
         er, model_preds, test_preds = test(self.test_dataloader, 
                 self.model, self.device)
         return er, model_preds, test_preds
@@ -164,6 +246,26 @@ class Trainer:
             Checkpoint the model and additional keyword arguments.
             The function doesn't check for 'ckpt_dir' value.
             If 'model_only' is False, then optimizer is also stored.
+            
+            :param ckpt_fname:
+                The full file name where the checkpoint should be 
+                stored.
+            :param model_only:
+                If ``True``, then the optimizer state is not 
+                checkpointed. If ``False``, then the optimizer state
+                dictionary is also included in the checkpoint.
+            :param kwargs:
+                Additional information to checkpoint as extra 
+                arguments.
+            
+            .. warning::
+                Use this only to store checkpoints in ``.pt`` files
+                during training. After training is done, the best
+                model's ``state_dict`` is directly stored in a 
+                ``.pth`` file.
+            
+            .. warning::
+                This function is private to the class.
         """
         save_dict = {
             "model_state_dict": self.model.state_dict(),
@@ -177,7 +279,22 @@ class Trainer:
         torch.save(save_dict, ckpt_fname)
     
     # Train the model for the specified number of epochs
-    def train(self, num_epochs: int = 20) -> LeNet5:
+    def train(self, num_epochs: int = 20) -> T1:
+        """
+            The main training function.
+            
+            :param num_epochs:  The number of epochs to train.
+            
+            :returns:   
+                The training result as ``(model, (best_test_epoch, best_test_er))`` where
+                
+                -   ``model`` is the trained LeNet-5 model (after the
+                    last epoch)
+                -   ``best_test_epoch`` is the epoch where the best 
+                    performance on the test set was achieved
+                -   ``best_test_er`` is the corresponding test set 
+                    error
+        """
         best_test_er, best_test_epoch = None, None
         for i in tqdm(range(num_epochs)):
             loss = self._train_epoch(i)

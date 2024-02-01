@@ -1,4 +1,18 @@
-#
+# Testing LeNet
+"""
+    This is for testing the trained model. This is mainly internal
+    to the LeNet sub-module. The trained LeNet-5 was tested using
+    
+    .. code-block:: bash
+    
+        python -m mlhub.lenet.test \\
+            --ckpt-dir /scratch/mlhub/checkpoints/lenet5 \\
+            --download-dir /scratch/mlhub
+    
+    It basically runs the model through the test set, reports the test
+    error, and allows you to sample results (view as matplotlib 
+    figures).
+"""
 
 # %%
 import os

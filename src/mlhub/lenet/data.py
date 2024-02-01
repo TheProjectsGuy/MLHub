@@ -1,7 +1,10 @@
 # Dataset utilities and dataloaders for LeNet
 """
+    Datasets and dataloaders for the `MNIST dataset <http://yann.lecun.com/exdb/mnist/index.html>`__.
     
-    From: http://yann.lecun.com/exdb/mnist/index.html
+    .. autoclass:: mlhub.lenet.data.MNISTDataset
+        :members:
+        :special-members: __len__, __init__, __getitem__
 """
 
 # %%
@@ -62,29 +65,34 @@ T2 = tuple[Union[torch.Tensor, np.ndarray], int]
 # MNIST Dataset class
 class MNISTDataset(Dataset):
     """
-        MNIST Dataset class.
-        
-        Child class of torch.utils.data.Dataset:
-            https://pytorch.org/docs/stable/data.html#torch.utils.data.Dataset
+        MNIST Dataset class. A child class of 
+        `torch.utils.data.Dataset <https://pytorch.org/docs/stable/data.html#torch.utils.data.Dataset>`__.
     """
     def __init__(self, download_root: Optional[str] = None, 
                 train: bool = True, 
                 transform: T1 = "default", 
                 target_transform: T1 = None) -> None:
         """
-            - download_root: The root directory where to download 
-                files
-            - train: If True, use the training set, else use the test
-                set
-            - transform: Transformation to apply to the images. No
-                transform is applied if None. If "default", then
-                1. Convert to PyTorch tensor
-                2. Zero pad (28, 28) image to (32, 32) shape
-                3. Normalize input (so that mean and std are approx
-                    0 and 1 respectively)
+            :param download_root:
+                The root directory where to download the files. If
+                ``None``, then it is ``DOWNLOAD_DIR/mnist``.
+            :param train:
+                If True, use the training set, else use the test set.
+            :param transform:
+                Transformation to apply to the images. No 
+                transformation is applied if ``None``. If ``default``,
+                then
+                
+                1.  Convert to PyTorch tensor
+                2.  Zero pad (28, 28) image to (32, 32) shape
+                3.  Normalize input (so that mean and std are approx
+                    0 and 1, respectively)
+                
                 If some custom transform is given, it should be 
                 callable. It's best to give torchvision transforms.
-            - target_transform: Transformation to apply to the labels
+            :param target_transform:
+                Transformation to apply to the labels. ``None`` means
+                no transform.
         """
         super().__init__()
         self.data: dict[str, np.ndarray] = {}  # Complete data
@@ -113,9 +121,19 @@ class MNISTDataset(Dataset):
             self.transform = _default_transform
     
     def __len__(self) -> int:
+        """
+            Returns the number of samples in the MNIST (train or test)
+            split.
+        """
         return len(self.data[self.data_parts[0]])
     
     def __getitem__(self, idx: int) -> T2:
+        """
+            Returns a sample at the index ``idx``
+            
+            :param idx: The index
+            :returns:   A tuple containing the ``(image, label)``
+        """
         img, label = self.data[self.data_parts[0]][idx], \
                 self.data[self.data_parts[1]][idx]
         img: np.ndarray = ein.rearrange(img, "h w -> h w 1")

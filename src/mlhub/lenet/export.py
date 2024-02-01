@@ -1,6 +1,10 @@
 # Final external modules (exported for external use)
 """
-
+    Exporting Utilities
+    ^^^^^^^^^^^^^^^^^^^^
+    
+    .. autofunction:: mlhub.lenet.export.download_trained_model
+    
 """
 
 # %%
@@ -25,6 +29,22 @@ CKPT_URL = [    # URL, File name, MD5 hash
 
 # %%
 def download_trained_model(ckpt_dir: Optional[str] = None) -> LeNet5:
+    """
+        Download the trained LeNet-5 model from remote storage and
+        load checkpoint. If the checkpoint already exists, then the
+        checksum is verified and it's loaded (nothing is downloaded in
+        this case).
+        
+        .. note:: 
+            The checkpoint is loaded in ``eval`` mode.
+        
+        :param ckpt_dir:
+            The checkpointing directory (where the ``pth`` file should
+            be stored).
+        
+        :return:    The loaded PyTorch Model
+        :rtype:     LeNet5
+    """
     if ckpt_dir is None:
         ckpt_dir = f"{get_download_dir()}/checkpoints"
     if not os.path.isdir(ckpt_dir):

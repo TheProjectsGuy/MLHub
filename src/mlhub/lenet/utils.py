@@ -12,7 +12,11 @@ from torch.utils.data import DataLoader
 def error_rate(model_labels: torch.Tensor, 
                 target_labels: torch.Tensor) -> torch.Tensor:
     """
-        Compute error rate
+        Compute error rate. These are the fraction of the 
+        ``model_labels`` that do not match the ``target_labels``.
+        
+        :param model_labels:    Labels predicted by model
+        :param target_labels:   Ground-truth labels
     """
     assert model_labels.shape == target_labels.shape
     num = model_labels.shape[0]
@@ -23,7 +27,11 @@ def error_rate(model_labels: torch.Tensor,
 def model_output_to_labels(model_output: torch.Tensor) \
         -> torch.Tensor:
     """
-        Convert model output to labels
+        Convert model output (from the RBF unit) to labels using
+        ``argmin``.
+        
+        :param model_output:    The output of the RBFLayer
+        :returns:   The label (as index of least value)
     """
     if len(model_output.shape) == 1:    # Scalar
         return torch.argmin(model_output)
@@ -35,6 +43,16 @@ def model_output_to_labels(model_output: torch.Tensor) \
 def model_output_to_multi_labels(model_output: torch.Tensor, 
             top_n: int = 1) -> torch.Tensor:
     """
+        Same as :py:func:`model_output_to_labels`, but instead of
+        ``argmin`` and returning only one label, it returns ``top_n``
+        smallest values of the RBF output. This can be used for
+        debugging purposes (to see what are the next most likely
+        predictions, for example).
+        
+        :param model_output:   The output of the RBFLayer
+        :param top_n:   The ``top_n`` value
+        
+        :returns:   The indices of the lowest ``top_n`` values
     """
     if len(model_output.shape) == 1:    # Scalar
         return torch.argsort(model_output)[:top_n]
@@ -46,7 +64,15 @@ def model_output_to_multi_labels(model_output: torch.Tensor,
 def test(test_dataloader: DataLoader, model: nn.Module, 
             device: Optional[device] = None):
     """
-        Test the model
+        Test the model through a DataLoader on the test set. This
+        function is mainly used for internal evaluation/validation.
+        
+        :param test_dataloader:
+            The DataLoader to the MNISTDataset test split
+        :param model:   The model to test
+        :param device:  
+            The device to use for testing. If ``None``, then it is
+            inferred from the device of the ``model``.
     """
     num_samples = len(test_dataloader.dataset)
     model.eval()
