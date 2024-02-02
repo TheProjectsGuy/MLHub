@@ -382,6 +382,12 @@ class RBFUnits(nn.Module):
 class LeNet5(nn.Module):
     """
         LeNet-5 network presented in section 2 of :ref:`the paper <lecun1998gradient>`.
+        Contains the following Modules as members
+        
+        - :py:class:`SubSamplingLayer`
+        - :py:class:`CustomConvLayer`
+        - :py:class:`RBFUnits`
+        - :py:class:`SigmoidSquashingActivation`
     """
     def __init__(self) -> None:
         super().__init__()

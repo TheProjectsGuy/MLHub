@@ -22,6 +22,19 @@
         :linenos:
         :emphasize-lines: 4-5,12-16
     
+    
+    The following things are exported by this module
+    
+    -   :py:class:`MNISTDataset <mlhub.lenet.data.MNISTDataset>`: 
+        Dataset class for MNIST dataset.
+    -   :py:class:`LeNet5 <mlhub.lenet.models.LeNet5>`: The LeNet-5 
+        model.
+    -   :py:func:`download_trained_model <mlhub.lenet.export.download_trained_model>`: 
+        Single function that downloads and loads the model from remote 
+        storage.
+    -   :py:func:`model_output_to_labels <mlhub.lenet.utils.model_output_to_labels>`:
+        Function to convert model's output to label (using argmin).
+    
     .. automodule:: mlhub.lenet.export
         :exclude-members:
     

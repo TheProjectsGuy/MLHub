@@ -7,7 +7,7 @@ of the first CNNs to be successfully applied. It can be found in section 2 of
 the paper :ref:`LeCun1998 <lecun1998gradient>`.
 You can find my annotated copy of the paper `here <https://www.dropbox.com/scl/fi/rjwcnxxre3bjfk221gjm2/Y-LeCun-1998-Gradient-based-learning-applied-to-document-recognition.pdf?rlkey=v75dsceuwhl38elpqwoem5758&dl=0>`__. 
 Refer to only section 2 for the LeNet-5 model, as the paper proposes many more 
-things.
+things. The API code documentation can be found at :py:mod:`mlhub.lenet`.
 
 The model implemented here consists of the following (just like many AI models):
 
@@ -18,8 +18,7 @@ The model implemented here consists of the following (just like many AI models):
 
 .. contents:: Table of contents
 
-These are further described below. See the paper for more details. The API code
-documentation can be found at :py:mod:`mlhub.lenet`.
+These are further described below. See the paper for more details.
 
 Model
 ------
