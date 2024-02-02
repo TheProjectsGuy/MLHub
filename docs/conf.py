@@ -52,14 +52,9 @@ class Mock(MagicMock):
         return MagicMock()
 
 # Modules that won't be 'pip installed' in docs build but are used
-MOCK_MODULES = ["numpy", "einops", "torchinfo", "idx2numpy", "tyro"]
+MOCK_MODULES = ["einops", "torchinfo", "idx2numpy", "tyro"]
 MOCK_MODULES.extend(["tqdm", "tqdm.auto"])
 MOCK_MODULES.extend(["matplotlib", "matplotlib.pyplot"])
-MOCK_MODULES.extend(["torch", "torch.nn", "torch.optim", "torch.hub",
-        "torch.nn.functional", "torch.utils.data", 
-        "torch.utils.tensorboard"])
-MOCK_MODULES.extend(["torchvision", "torchvision.datasets", 
-        "torchvision.transforms", "torchvision.datasets.utils"])
 
 sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
 
