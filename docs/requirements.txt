@@ -4,5 +4,8 @@ sphinx-rtd-theme==1.2.0
 sphinx-copybutton==0.5.1
 sphinx_design==0.3.0
 # Libraries
+--index-url https://download.pytorch.org/whl/cpu
 torch==2.1.0
+torchvision==0.16.0
+torchaudio==2.1.0
 numpy==1.26.0
