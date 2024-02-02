@@ -41,6 +41,27 @@ if lib_path not in sys.path:
 else:
     print(f"Library path {lib_path} already in PYTHONPATH")
 
+# -- Autodoc configurations -----------------------------------------
+# https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html
+# autoclass_content = 'both'
+from unittest.mock import MagicMock
+
+class Mock(MagicMock):
+    @classmethod
+    def __getattr__(cls, name):
+        return MagicMock()
+
+# Modules that won't be 'pip installed' in docs build but are used
+MOCK_MODULES = ["numpy", "einops", "torchinfo", "idx2numpy"]
+MOCK_MODULES.extend(["matplotlib", "matplotlib.pyplot"])
+MOCK_MODULES.extend(["torch", "torch.nn", "torch.optim", "torch.hub",
+        "torch.nn.functional", "torch.utils.data", 
+        "torch.utils.tensorboard"])
+MOCK_MODULES.extend(["torchvision", "torchvision.datasets", 
+        "torchvision.transforms", "torchvision.datasets.utils"])
+
+sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
+
 # Library information
 from mlhub import __about__ as mlhub_info
 
@@ -107,27 +128,6 @@ pygments_style = 'sphinx'
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
-
-# -- Autodoc configurations -----------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html
-# autoclass_content = 'both'
-from unittest.mock import MagicMock
-
-class Mock(MagicMock):
-    @classmethod
-    def __getattr__(cls, name):
-        return MagicMock()
-
-# Modules that won't be 'pip installed' in docs build but are used
-MOCK_MODULES = ["numpy", "einops", "torchinfo", "idx2numpy"]
-MOCK_MODULES.extend(["matplotlib", "matplotlib.pyplot"])
-MOCK_MODULES.extend(["torch", "torch.nn", "torch.optim", "torch.hub",
-        "torch.nn.functional", "torch.utils.data", 
-        "torch.utils.tensorboard"])
-MOCK_MODULES.extend(["torchvision", "torchvision.datasets", 
-        "torchvision.transforms", "torchvision.datasets.utils"])
-
-sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
 
 # -- Options for HTML output ----------------------------------------------
 
