@@ -21,22 +21,15 @@ Welcome to MLHub's documentation!
 .. toctree:: 
     :maxdepth: 4
     :caption: API
-    :hidden:
     
     api/index
 
 .. toctree::
     :maxdepth: 1
-    :caption: Indices
-    :hidden:
+    :caption: Indices and tables
     
     references
-    modindex
     genindex
+    modindex
+    search
 
-Indices and tables
-------------------
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
