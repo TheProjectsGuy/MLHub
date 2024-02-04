@@ -15,6 +15,10 @@ My notes, experiments, models, etc. wrapped into a library. Mainly for personal 
 
 ## Notes
 
+- Project is currently not accepting contributions (alpha stage).
+- Follow Zen of Python `python -c "import this"`
+- Checkpoints: `.pt` is for training (dict is stored), `.pth` is the final model (state dict directly stored)
+
 ### Setup
 
 Setup anaconda environment (use `conda` or `mamba`) using
@@ -29,6 +33,17 @@ To install only the core requirements in your current conda environment, run
 
 ```bash
 bash ./env_setup.sh $CONDA_DEFAULT_ENV
+```
+
+To add this repo as a package in a conda environment
+
+```bash
+# Install (add the folder to conda.pth)
+conda develop ./src
+# Verify if this worked (path should be present)
+cat $CONDA_PREFIX/lib/python3.9/site-packages/conda.pth
+# Remove this (after testing is over)
+conda develop -u ./src
 ```
 
 #### Sphinx Docs

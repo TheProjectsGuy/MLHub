@@ -71,6 +71,40 @@ formulated as
 This activation function is implemented as :py:class:`SigmoidSquashingActivation <mlhub.lenet.models.SigmoidSquashingActivation>`.
 The entire network is implemented in the :py:class:`LeNet5 <mlhub.lenet.models.LeNet5>` class.
 
+.. code-block:: text
+  :caption: Model summary 
+    (using `torchinfo <https://github.com/TylerYep/torchinfo>`__)
+
+  ==============================================================================
+  Layer (type:depth-idx)                   Output Shape              Param #
+  ==============================================================================
+  LeNet5                                   [10]                      --
+  ├─Conv2d: 1-1                            [1, 6, 28, 28]            156
+  ├─SigmoidSquashingActivation: 1-2        [1, 6, 28, 28]            --
+  ├─SubSamplingLayer: 1-3                  [1, 6, 14, 14]            12
+  ├─SigmoidSquashingActivation: 1-4        [1, 6, 14, 14]            --
+  ├─CustomConvLayer: 1-5                   [1, 16, 10, 10]           1,516
+  ├─SigmoidSquashingActivation: 1-6        [1, 16, 10, 10]           --
+  ├─SubSamplingLayer: 1-7                  [1, 16, 5, 5]             32
+  ├─SigmoidSquashingActivation: 1-8        [1, 16, 5, 5]             --
+  ├─Conv2d: 1-9                            [1, 120, 1, 1]            48,120
+  ├─SigmoidSquashingActivation: 1-10       [1, 120, 1, 1]            --
+  ├─Linear: 1-11                           [84]                      10,164
+  ├─SigmoidSquashingActivation: 1-12       [84]                      --
+  ├─RBFUnits: 1-13                         [10]                      (840)
+  ==============================================================================
+  Total params: 60,840
+  Trainable params: 60,000
+  Non-trainable params: 840
+  Total mult-adds (M): 1.03
+  ==============================================================================
+  Input size (MB): 0.00
+  Forward/backward pass size (MB): 0.06
+  Params size (MB): 0.24
+  Estimated Total Size (MB): 0.31
+  ==============================================================================
+
+
 Custom Convolution Layer
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 

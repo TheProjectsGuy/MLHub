@@ -243,6 +243,8 @@ if [ $dev_tools == "true" ]; then
     pip_install sphinx-reload
     # Jupyter
     conda_raw_install -c conda-forge jupyter
+    # Packaging
+    conda_install -c conda-forge conda-build
 elif [ $dev_tools == "false" ]; then
     echo_info "Skipping documentation and packaging tools"
 fi

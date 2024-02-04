@@ -95,6 +95,7 @@ Interesting projects in the wild
 
 #. `spaCy <https://spacy.io/>`__: NLP tool
 #. `Acme <https://dm-acme.readthedocs.io/en/latest/>`__: RL components and agents by Google DeepMind
+#. Some PyTorch frameworks for (numerical) optimizers: `torchimize <https://github.com/hahnec/torchimize>`__ (`API <https://hahnec.github.io/torchimize/build/html/apidoc.html>`__), `pytorch-minimize <https://github.com/rfeinman/pytorch-minimize>`__
 #. `MLHub CLI <https://mlhub.readthedocs.io/en/latest/>`__: Command line framework for various ML models (not related to this project)
 #. `AutoML <https://www.automl.org/>`__: Neural architecture search (NAS) and hyperparameter selection/optimization
 #. `Radiant Earth <https://radiant.earth/>`__: Earth observation data (geo-spatial informatics)

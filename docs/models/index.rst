@@ -12,4 +12,4 @@ information pages. Look at :doc:`/api/models` for the API/code docs.
 
 The following models are implemented
 
-- :doc:`LeNet-5 </models/lenet>`
+- :doc:`/models/lenet`
