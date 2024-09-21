@@ -54,9 +54,12 @@ import random
 import hashlib
 import numpy as np
 from pathlib import Path
+from datetime import datetime
 from typing import Optional, Union
-from torchvision.datasets.utils import download_and_extract_archive \
-    as _download_and_extract_archive
+from torchvision.datasets.utils import \
+        extract_archive as _extract_archive, \
+        download_url as _download_url, \
+        download_and_extract_archive as _download_and_extract_archive
 
 
 # %%
@@ -84,6 +87,8 @@ def download_and_extract_archive(url: str,
         A wrapper to PyTorch's download and extract function with
         documentation. If the file is already downloaded, then the
         download is not done again (after an MD5 integrity check).
+        However, the downloaded file is always extracted (files are
+        overwritten if they already exist).
         
         :param url:     The download URL (to obtain the file from)
         :param download_root:
@@ -108,6 +113,78 @@ def download_and_extract_archive(url: str,
         download_root = get_download_dir()
     _download_and_extract_archive(url, download_root, extract_root, 
                                 filename, md5, remove_finished)
+
+
+# Cached download and extract (wrapper)
+def cached_download_and_extract_archive(url: str, 
+        download_root: Optional[str] = None, 
+        extract_root: Optional[str] = None, 
+        flag_root: Optional[str] = None,
+        filename: Optional[str] = None, md5: Optional[str] = None,
+        remove_finished: bool = False) -> None:
+    r"""
+        1. Check if file to download already exists
+        2. If file exists, then check if already unzipped. If it 
+            doesn't exist then download it.
+        3. If file not unzipped, then unzip (extract) it.
+        
+        :param download_root:
+                Root folder where downloaded items must be stored. 
+                If None, then it is inferred from the function 
+                :py:func:`mlhub.utils.get_download_dir`.
+    """
+    # Defaults and preprocess
+    if download_root is None:
+        download_root = get_download_dir()
+    if filename is None:
+        filename = os.path.basename(url)
+    if extract_root is None:
+        extract_root = download_root
+    if flag_root is None:
+        flag_root = extract_root
+    download_root = ex(download_root)
+    download_file = True
+    extract_file = True
+    file_path = os.path.join(download_root, filename)
+    flag_path = os.path.join(flag_root, f"{filename}.flag")
+    # Check if the proper file already exists and download if doesn't
+    if os.path.isfile(file_path):
+        print(f"File already exists: {file_path}")
+        if md5 is not None:
+            if not check_md5(file_path, md5):
+                print("MD5 doesn't match, file will be downloaded")
+                run_command(f"mv {file_path} {file_path}.backup")
+            else:
+                print("MD5 matches, not downloading it")
+                download_file = False
+    if download_file:
+        print(f"Downloading {url} to {file_path}")
+        _download_url(url, download_root, filename, md5)
+    else:
+        print(f"Skipping download of {url}")
+    # Check if we have already downloaded and extracted the file
+    if os.path.isfile(flag_path):
+        with open(flag_path, "r") as f:
+            ts = f.read()
+        print(f"File already extracted at timestamp {ts}")
+        extract_file = False
+    # Extract the file
+    if extract_file:
+        print(f"Extracting {file_path} to {extract_root}")
+        _extract_archive(file_path, extract_root, remove_finished)
+        # Create a flag file with timestamp
+        ts = datetime.now().strftime(f"%Y-%m-%dT%H-%M-%S")
+        with open(flag_path, "w") as f:
+            f.write(ts)
+        print(f"Data extraction completed at {ts}")
+    else:
+        print(f"Skipping extraction of {file_path}")
+
+
+# Run a system command
+def run_command(cmd: str):
+    print(f">>> {cmd}")
+    os.system(cmd)
 
 
 # Check the MD5 checksum of a file

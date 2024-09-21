@@ -25,7 +25,7 @@ from mlhub.utils import download_and_extract_archive, ex, \
 
 
 # %%
-_data_source = {    # ["Link", "MD5"]
+_data_source = {    # ["Link", "MD5", "filename"]
     "train-images": [
         "http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz",
         "f68b3c2dcbeaaa9fbdd348bbdeb94873",
@@ -112,7 +112,7 @@ class MNISTDataset(Dataset):
             download_and_extract_archive(_data_source[part][0],
                     self.download_root, md5=_data_source[part][1])
             # Load to array
-            self.data[part]: np.ndarray = idx2numpy.convert_from_file(
+            self.data[part] = idx2numpy.convert_from_file(
                     f"{self.download_root}/{_data_source[part][2]}")
         # Register transforms
         self.transform = transform

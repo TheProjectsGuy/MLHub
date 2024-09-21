@@ -13,8 +13,6 @@
     It closely follows section 2 of the :ref:`LeCun1998 <lecun1998gradient>`
     paper.
     
-    .. contents:: Table of contents
-    
     A demo for external use can be this
     
     .. literalinclude:: /../test/lenet_test.py

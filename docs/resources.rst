@@ -79,6 +79,7 @@ Interesting projects in the wild
 #. `Kornia <https://kornia.readthedocs.io/en/latest/>`__: Computer vision algorithms (AI centric)
 #. `PyG - PyTorch Geometric <https://pyg.org/>`__: Geometric deep learning on PyTorch
 #. `PyTorch Points 3D <https://torch-points3d.readthedocs.io/en/latest/>`_: Implementation of various 3D algorithms in one repository
+#. `PyTorch Metric Learning <https://github.com/KevinMusgrave/pytorch-metric-learning>`__: Implementation of distance-based data mining, losses, trainers, testers, etc. for metric learning
 #. `Numba <https://numba.pydata.org/>`__: JIT compilation for making python code faster (even has CUDA acceleration and parallel for loops)
 #. `RAPIDS Ecosystem <https://rapids.ai/ecosystem/>`__: Many libraries for accelerated pandas dataframe, Scikit-learn like API, analytics, clustering, solvers, etc.
 #. `CuPy <https://cupy.dev/>`__ and `PyCUDA <https://documen.tician.de/pycuda/>`__: NVIDIA CUDA in Python
@@ -92,10 +93,32 @@ Interesting projects in the wild
     * `LLaMA Index <https://www.llamaindex.ai/>`__: LLMs on your own data
     * `LangChain <https://python.langchain.com/>`__: Build applications powered by language models
     * `tiktoken <https://github.com/openai/tiktoken>`__: OpenAI's BPE tokenizer
+    * `Guardrails <https://github.com/guardrails-ai/guardrails>`__: Adding guardrails to LLM outputs (prompting). Also see `this blog <https://hamel.dev/blog/posts/prompt/>`__ on inspecting the under-the-hood prompting.
+
+#. Collection of interesting research in the wild
+
+    * Microsoft's `microsoft/unilm <https://github.com/microsoft/unilm>`__: Collection of Large-scale Self-supervised Pre-training Across Tasks, Languages, and Modalities. Also see their `website <https://aka.ms/GeneralAI>`__.
+    * Google's massive `google-research repository <https://github.com/google-research/google-research>`__: contains all publicly released code by `Google Research <https://research.google/>`__.
+    * Facebook's `Detectron2 repository <https://github.com/facebookresearch/detectron2>`__: contains SOTA detection and segmentation algorithms. Also see their `xformers repository <https://github.com/facebookresearch/xformers?tab=License-1-ov-file>`__ for transformer optimization hacks.
+    * Google's `Scenic Library <https://github.com/google-research/scenic>`__: has many computer-vision research tools (coded in JAX).
 
 #. `spaCy <https://spacy.io/>`__: NLP tool
+#. `ESPnet <https://github.com/espnet/espnet>`__: End-to-End Speech Processing Toolkit. Also see `docs <https://espnet.github.io/espnet/>`__.
 #. `Acme <https://dm-acme.readthedocs.io/en/latest/>`__: RL components and agents by Google DeepMind
 #. Some PyTorch frameworks for (numerical) optimizers: `torchimize <https://github.com/hahnec/torchimize>`__ (`API <https://hahnec.github.io/torchimize/build/html/apidoc.html>`__), `pytorch-minimize <https://github.com/rfeinman/pytorch-minimize>`__
+#. Collection of parallel (distributed/multi-GPU and node) training resources
+
+    * `HF Accelerate <https://github.com/huggingface/accelerate>`__: Use PyTorch models on any device and distributed configuration (by HuggingFace)
+    * `Horovod <https://github.com/horovod/horovod>`__: Distributed DL framework for Tensorflow, PyTorch, and Keras
+    * `LambdaLabs Blog <https://lambdalabs.com/blog/multi-node-pytorch-distributed-training-guide>`__: Distributed training guide for PyTorch (using MPI)
+
+#. Some more interesting ML projects in the wild
+
+    * `Teachable Machine <https://teachablemachine.withgoogle.com/>`__ (`GitHub <https://github.com/googlecreativelab/teachablemachine-community>`__): Train a model to recognize images, sounds, and poses online and export TensorFlow model.
+    * `Quick Draw <https://quickdraw.withgoogle.com/>`__: Dataset and model to recognize hand drawings (doodling dataset).
+    * `ONNX <https://onnx.ai/>`__: Interoperability framework for AI models (`GitHub <https://github.com/onnx/onnx>`__)
+    * `ONNX Runtime <https://onnxruntime.ai/>`__: Deploy an ONNX model on multiple platforms (`GitHub <https://github.com/microsoft/onnxruntime>`__)
+
 #. `MLHub CLI <https://mlhub.readthedocs.io/en/latest/>`__: Command line framework for various ML models (not related to this project)
 #. `AutoML <https://www.automl.org/>`__: Neural architecture search (NAS) and hyperparameter selection/optimization
 #. `Radiant Earth <https://radiant.earth/>`__: Earth observation data (geo-spatial informatics)
@@ -234,6 +257,7 @@ Natural Language Processing
 YouTube Playlists
 -----------------
 
+#. `3Blue1Brown Course - Neural Networks <https://youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi>`__: Awesome theory and explanation, from basic neural networks and back propagation to GPT-3 (transformers and tokenizers).
 #. `Andrej Karpathy - Neural Networks: Zero to Hero <https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ>`__
 #. `Samuel Albanie - Foundation Models <https://www.youtube.com/playlist?list=PL9t0xVFP90GD8hox0KipBkJcLX_C3ja67>`__
 #. `GCP -  Making Friends with Machine Learning <https://www.youtube.com/playlist?list=PLRKtJ4IpxJpDxl0NTvNYQWKCYzHNuy2xG>`__

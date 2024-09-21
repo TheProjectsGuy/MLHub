@@ -174,7 +174,7 @@ website: `<http://yann.lecun.com/exdb/mnist/>`_.
   
   Some handwritten examples from the MNIST dataset.
 
-The dataset for this is implemented in the :py:class:`MNISTDataset <mlhub.lenet5.MNISTDataset>` class.
+The dataset for this is implemented in the :py:class:`MNISTDataset <mlhub.lenet.data.MNISTDataset>` class.
 
 Loss
 -----
@@ -192,7 +192,8 @@ The above is Equation 9 of the :ref:`LeCun1998 <lecun1998gradient>` paper. Where
 :math:`W` are the trainable parameters (weights) of the network, :math:`P` is 
 the training batch size, :math:`Z^p` is an input sample from the batch,
 :math:`D^p` is the label of the input sample, and :math:`j` is a small positive
-number.
+number. :math:`y_i` is the output of the :math:`i`-th RBF unit, and 
+:math:`y_{D^p}` is the output of the :math:`D^p`-th RBF unit.
 
 The first term :math:`y_{D^p} \left ( Z^p, W \right )` is the RBF output of the 
 unit :math:`D^p` (correct output sample). We ideally want this to be zero since
@@ -229,7 +230,8 @@ See the :py:mod:`mlhub.lenet.train` module for more information on the API.
 Results
 --------
 
-
+The model has about ``97.6 %`` accuracy. You can visualize the predictions of
+the trained model using the :py:mod:`mlhub.lenet.test` module.
 
 References
 -----------

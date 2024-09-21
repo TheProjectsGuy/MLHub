@@ -235,6 +235,7 @@ conda_raw_install -c conda-forge matplotlib
 conda_install -c conda-forge tqdm
 conda_install -c conda-forge tyro
 conda_install -c conda-forge tensorboard
+conda_install -c conda-forge natsort
 pip_install torchviz
 if [ $dev_tools == "true" ]; then 
     echo_info "------ Installing documentation and packaging tools ------"
